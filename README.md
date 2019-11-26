@@ -1,6 +1,3 @@
-![MyS3Chat](https://github.com/mudasiryounas/MyS3Chat/blob/master/screenshots/screen1.png)
-
-
 # mkabChatApp – Real Time Android Chat Application using Firebase
 
 # [Real Time Android Chat Application][published url]
