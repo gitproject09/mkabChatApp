@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="org.mkab.chatapp.activity.ActivityAddContact">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/et_SearchKey"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Search Name , Email ..."
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/bt_Search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/emoji_1f50d"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:onClick="btn_SearchClick"/>
+        <!--<Button-->
+            <!--android:id="@+id/bt_Search"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:onClick="btn_SearchClick"-->
+            <!--android:text="Search" />-->
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_AddContactList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+
+</LinearLayout>

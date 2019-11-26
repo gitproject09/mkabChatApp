@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.mkab.chatapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity
+            android:name=".activity.ActivityMain"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.ActivityLogin"
+            android:noHistory="true"
+            android:launchMode="singleTop" />
+        <activity android:name=".activity.ActivityRegister"   />
+        <activity android:name=".activity.ActivityProfile" />
+        <activity android:name=".activity.ActivityChat"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop"    />
+        <activity android:name=".activity.ActivityAddContact"  />
+        <activity android:name=".activity.ActivityFriendProfile"  />
+        <activity android:name=".activity.ActivityNotifications"   />
+
+        <service
+            android:name=".receiver.AppService"
+            android:enabled="true"
+            android:exported="true"
+            android:stopWithTask="false" />
+
+        <receiver
+            android:name=".receiver.AppReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name=".restartservice" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
