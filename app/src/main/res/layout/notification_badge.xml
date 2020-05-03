@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="?actionBarSize"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/ivNoti"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_nav_notifications" />
+
+    <TextView
+        android:id="@+id/tvNotiCount"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="-16dp"
+        android:layout_marginTop="-8dp"
+        android:background="@drawable/ic_circle"
+        android:visibility="gone"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />
+
+</LinearLayout>

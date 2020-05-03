@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_HiddenEmail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="3dp"
+            android:src="@drawable/dp_placeholder_sm" />
+
+        <TextView
+            android:id="@+id/tv_DoctorFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="TextView"
+            android:textColor="#181717"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="end"
+            android:layout_marginEnd="10dp"
+            android:text=">"
+            android:textColor="#181717"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_DoctorStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="On Duty"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        android:textColor="#009688"
+        android:textSize="14dp" />
+
+</LinearLayout>

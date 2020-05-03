@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-
     <TextView
         android:id="@+id/tv_lastChat_HiddenEmail"
         android:layout_width="0dp"
@@ -27,32 +26,33 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tv_lastChat_FriendFullName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/tv_lastChat_MessageDate"
                     android:text="Full Name"
                     android:textColor="#181717"
-                    android:textSize="25px" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/tv_lastChat_MessageDate"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
+                    android:layout_alignParentEnd="true"
                     android:text="Sent Date"
                     android:textColor="#807474"
-                    android:textSize="20px" />
+                    android:textSize="9dp" />
 
-            </LinearLayout>
-
+            </RelativeLayout>
 
             <hani.momanii.supernova_emoji_library.Helper.EmojiconTextView
                 android:id="@+id/tv_lastChat_Message"
@@ -60,11 +60,10 @@
                 android:layout_height="wrap_content"
                 android:text="Message..."
                 android:textColor="#807474"
-                android:textSize="20px"
+                android:textSize="10dp"
                 app:emojiconSize="20px" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 

@@ -42,7 +42,7 @@ public class ActivityAddContact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
         pd = new ProgressDialog(this);
-        pd.setMessage("Seraching...");
+        pd.setMessage("Searching...");
         lv_SerachList = (ListView) findViewById(R.id.lv_AddContactList);
         searchKey = (EditText) findViewById(R.id.et_SearchKey);
         // listener for item click
@@ -90,8 +90,10 @@ public class ActivityAddContact extends AppCompatActivity {
             try {
                 return call.execute().body();
             } catch (IOException e) {
-                pd.hide();
-                Toast.makeText(ActivityAddContact.this, "Please check your internet connection.", Toast.LENGTH_SHORT).show();
+                if (pd != null && pd.isShowing()) {
+                    pd.dismiss();
+                }
+                //Toast.makeText(ActivityAddContact.this, "Please check your internet connection.", Toast.LENGTH_SHORT).show();
             }
             return null;
         }
@@ -102,39 +104,46 @@ public class ActivityAddContact extends AppCompatActivity {
 
             try {
                 User user = LocalUserService.getLocalUserFromPreferences(getApplicationContext());
-                JSONObject jsonObjectList = new JSONObject(jsonListString);
-                List<User> friendList = new ArrayList<>();
-                for (Iterator iterator = jsonObjectList.keys(); iterator.hasNext(); ) {
-                    try {
-                        String key = (String) iterator.next();
-                        JSONObject item = jsonObjectList.getJSONObject(key);
-                        User f = new User();
-                        f.Email = item.getString("Email");
-                        f.FirstName = item.getString("FirstName");
-                        f.LastName = item.getString("LastName");
-                        String serKey = Tools.encodeString(searchKey.getText().toString()).toLowerCase().trim();
-                        String fullName = f.FirstName.toLowerCase() + " " + f.LastName.toLowerCase();
-                        if (f.Email.toLowerCase().contains(serKey) || fullName.contains(serKey)) {
-                            if (!f.Email.equals(user.Email)) {
-                                friendList.add(f);
+                if (jsonListString != null) {
+                    JSONObject jsonObjectList = new JSONObject(jsonListString);
+                    List<User> friendList = new ArrayList<>();
+                    for (Iterator iterator = jsonObjectList.keys(); iterator.hasNext(); ) {
+                        try {
+                            String key = (String) iterator.next();
+                            JSONObject item = jsonObjectList.getJSONObject(key);
+                            User f = new User();
+                            f.Email = item.getString("Email");
+                            f.FirstName = item.getString("FirstName");
+                            f.LastName = item.getString("LastName");
+                            f.Majlish = item.getString("Majlish");
+                            String serKey = Tools.encodeString(searchKey.getText().toString()).toLowerCase().trim();
+                            String fullName = f.FirstName.toLowerCase() + " " + f.LastName.toLowerCase();
+                            if (f.Email.toLowerCase().contains(serKey) || fullName.contains(serKey)) {
+                                if (!f.Email.equals(user.Email)) {
+                                    friendList.add(f);
+                                }
                             }
+                        } catch (Exception exx) {
+                            continue;
                         }
-                    } catch (Exception exx) {
-                        continue;
                     }
+                    ListAdapter adp = new FriendListAdapter(ActivityAddContact.this, friendList);
+                    lv_SerachList.setAdapter(adp);
+                    if (pd != null && pd.isShowing()) {
+                        pd.dismiss();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Not found, Please try again.", Toast.LENGTH_SHORT).show();
                 }
-                ListAdapter adp = new FriendListAdapter(ActivityAddContact.this, friendList);
-                lv_SerachList.setAdapter(adp);
-                pd.hide();
 
             } catch (JSONException e) {
-                pd.hide();
+                if (pd != null && pd.isShowing()) {
+                    pd.dismiss();
+                }
                 e.printStackTrace();
             }
 
-
         }
     }
-
 
 }

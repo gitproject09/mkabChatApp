@@ -3,9 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.mkab.chatapp">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,31 +27,62 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".activity.ActivityMain"
-            android:label="@string/title_activity_main"
+            android:name=".activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ActivityLogin"
-            android:noHistory="true"
-            android:launchMode="singleTop" />
-        <activity android:name=".activity.ActivityRegister"   />
-        <activity android:name=".activity.ActivityProfile" />
-        <activity android:name=".activity.ActivityChat"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleTop"    />
-        <activity android:name=".activity.ActivityAddContact"  />
-        <activity android:name=".activity.ActivityFriendProfile"  />
-        <activity android:name=".activity.ActivityNotifications"   />
 
-        <service
+        <activity
+            android:name=".activity.MainUIActivity"
+            android:label="@string/title_activity_main">
+        </activity>
+
+        <activity
+            android:name=".activity.ActivityLogin"
+            android:launchMode="singleTop"
+            android:noHistory="true" />
+        <activity android:name=".activity.ActivityRegister" />
+        <activity android:name=".activity.ActivityAddDoctors" />
+        <activity android:name=".activity.DoctorDetailsActivity" />
+        <activity android:name=".activity.MessageSendActivity" />
+        <activity android:name=".activity.MailSendActivity" />
+        <activity android:name=".activity.ActivityProfile" />
+        <activity
+            android:name=".activity.ActivityChat"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.ActivityAddContact" />
+        <activity android:name=".activity.ActivityFriendProfile" />
+        <activity android:name=".activity.ActivityNotifications" />
+
+       <!-- <service
             android:name=".receiver.AppService"
             android:enabled="true"
             android:exported="true"
-            android:stopWithTask="false" />
+            android:stopWithTask="false" />-->
+
+       <!-- <service
+            android:name=".service.JobDispatchService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>-->
+
+        <service
+            android:name=".service.MyService">
+            <intent-filter android:priority="90000">
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.SCREEN_ON"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.intent.action.USER_UNLOCKED"/>
+            </intent-filter>
+        </service>
 
         <receiver
             android:name=".receiver.AppReceiver"
@@ -49,6 +90,17 @@
             android:exported="true">
             <intent-filter>
                 <action android:name=".restartservice" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".service.DeviceBootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 

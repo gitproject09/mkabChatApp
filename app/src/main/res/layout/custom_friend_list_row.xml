@@ -27,13 +27,13 @@
         <TextView
             android:id="@+id/tv_FriendFullName"
             android:layout_width="wrap_content"
-            android:layout_height="41dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="TextView"
             android:textColor="#181717"
-            android:textSize="30px" />
+            android:textSize="16dp" />
 
 
     </LinearLayout>

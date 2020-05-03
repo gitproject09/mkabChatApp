@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menu_deleteConservation"
-        app:showAsAction="always"
-        android:title="Clear Conservation"
         android:icon="@android:drawable/ic_menu_delete"
-        />
+        android:title="Clear Conservation"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_friendProfile"
         android:title="Profile"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_deleteContact"
         android:title="Delete Contact"
         app:showAsAction="never" />
-
 
 </menu>

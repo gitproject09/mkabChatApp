@@ -135,7 +135,6 @@ public class NotficationListAdapter extends ArrayAdapter<NotificationModel> {
                 }
         );
 
-
     }
 
     private void onRejectClick(final ImageButton btn, final int modelPosition, final String friedFullName) {

@@ -28,4 +28,27 @@ public class LocalUserService {
         }
     }
 
+    public static int getNotificationCount(Context context){
+        SharedPreferences pref = context.getSharedPreferences("LocalUser",0);
+        int currentNoti = 0;
+        currentNoti = pref.getInt("NotificationCount",0);
+
+        return currentNoti;
+    }
+    public static int getChatCount(Context context){
+        SharedPreferences pref = context.getSharedPreferences("LocalUser",0);
+        int currentNoti = 0;
+        currentNoti = pref.getInt("ChatCount",0);
+
+        return currentNoti;
+    }
+
+    public static boolean getServiceStatus(Context context){
+        SharedPreferences pref = context.getSharedPreferences("LocalUser",0);
+        boolean isServiceStart = false;
+        isServiceStart = pref.getBoolean("ServiceStart",false);
+        return isServiceStart;
+    }
+
+
 }

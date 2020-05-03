@@ -1,5 +1,6 @@
 package org.mkab.chatapp.activity;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListAdapter;
@@ -34,6 +35,12 @@ public class ActivityNotifications extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
         Firebase.setAndroidContext(this);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("LocalUser", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putInt("NotificationCount", 0);
+        editor.commit();
+
     }
 
     @Override
@@ -51,10 +58,12 @@ public class ActivityNotifications extends AppCompatActivity {
                         Map map = dataSnapshot.getValue(Map.class);
                         String firstName = map.get("FirstName").toString();
                         String lastName = map.get("LastName").toString();
+                      //  String majlish = map.get("Majlish").toString();
                         final String key = dataSnapshot.getKey();
                         NotificationModel not = new NotificationModel();
                         not.FirstName = firstName;
                         not.LastName = lastName;
+                       // not.Majlish = majlish;
                         not.NotificationType = 1; // friend request
                         notificationList.add(not);
                         not.EmailFrom = key;

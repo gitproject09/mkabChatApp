@@ -2,13 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="org.mkab.chatapp.activity.ActivityMain">
+    tools:context=".activity.MainUIActivity">
 
     <item
         android:id="@+id/menu_profile"
-        app:showAsAction="never"
         android:title="@string/Profile"
-        />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_addContacts"
@@ -17,20 +16,18 @@
 
     <item
         android:id="@+id/menu_notification"
-        app:showAsAction="never"
         android:title="Notifications"
-        />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_refresh"
-        android:icon="@android:drawable/ic_menu_rotate"
-        app:showAsAction="always"
-        android:title="Refresh"
-        />
+        app:actionLayout="@layout/notification_badge"
+        android:orderInCategory="100"
+        android:title=""
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_logout"
-        app:showAsAction="never"
         android:title="@string/Logout"
-        />
+        app:showAsAction="never" />
 </menu>

@@ -6,4 +6,20 @@
     <color name="messageTextColor">#000000</color>
     <color name="tabsIndicatorColor">#ffffff</color>
     <color name="bg_color">#f3faff</color>
+
+    <color name="black_light">#191919</color>
+    <color name="black_tint">#363f48</color>
+    <color name="black_dim">#4c545c</color>
+    <color name="black_ash">#626970</color>
+
+    <color name="feed_item_border">#c2c3c8</color>
+    <color name="tab_selected">#AD0340</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="color_grey_low_light">#D8D8D8</color>
+    <color name="list_background">#F6F7F9</color>
+    <color name="list_view_background">#E9EBEE</color>
+    <color name="background_dark">#DFDFDF</color>
+    <color name="background_studio">#F0F0F0</color>
+    <color name="background_splash">#f3faff</color>
+
 </resources>

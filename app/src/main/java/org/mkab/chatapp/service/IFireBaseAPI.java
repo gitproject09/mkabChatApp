@@ -9,6 +9,9 @@ public interface IFireBaseAPI {
     @GET("/users.json")
     Call<String> getAllUsersAsJsonString();
 
+    @GET("/doctors.json")
+    Call<String> getAllDoctorsAsJsonString();
+
     @GET
     Call<String> getUserFriendsListAsJsonString(@Url String url);
 

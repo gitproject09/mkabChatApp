@@ -56,6 +56,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:11.4.2'
     implementation 'com.google.firebase:firebase-messaging:11.4.2'
 
+    // Job Dispatcher
+   // implementation "com.firebase:firebase-jobdispatcher:$rootProject.jobDispatcherVersion"
+
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
     implementation 'hani.momanii.supernova_emoji_library:supernova-emoji-library:0.0.2'
 

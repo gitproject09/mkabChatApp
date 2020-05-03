@@ -162,7 +162,6 @@ public class ActivityChat extends AppCompatActivity {
                         getSupportActionBar().setSubtitle(friendStatus);
                     }
 
-
                 }
 
             }
@@ -425,9 +424,7 @@ public class ActivityChat extends AppCompatActivity {
         if (messType == 1) {
             textView.setBackgroundResource(R.drawable.messagebg1);
             lp.gravity = Gravity.RIGHT;
-        }
-        //  2 friend
-        else {
+        } else { //  2 friend
             textView.setBackgroundResource(R.drawable.messagebg2);
             lp.gravity = Gravity.LEFT;
         }

@@ -1,6 +1,5 @@
 package org.mkab.chatapp.adapter;
 
-
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,7 +18,6 @@ import java.util.List;
 
 public class FriendListAdapter extends ArrayAdapter<User> {
 
-
     public FriendListAdapter(@NonNull Context context, List<User> contactList) {
         super(context, R.layout.custom_friend_list_row, contactList);
     }
@@ -33,7 +31,9 @@ public class FriendListAdapter extends ArrayAdapter<User> {
         TextView hiddenEmail = (TextView) customView.findViewById(R.id.tv_HiddenEmail);
         TextView tv_Name = (TextView) customView.findViewById(R.id.tv_FriendFullName);
         hiddenEmail.setText(String.valueOf(user.Email));
-        tv_Name.setText(Tools.toProperName(user.FirstName) + " " + Tools.toProperName(user.LastName));
+        //tv_Name.setText(Tools.toProperName(user.FirstName) + " " + Tools.toProperName(user.LastName));
+        //tv_Name.setText(Tools.toProperName(user.FirstName) + "\n" + Tools.toProperName(user.LastName));
+        tv_Name.setText(user.FirstName);
         return customView;
     }
 

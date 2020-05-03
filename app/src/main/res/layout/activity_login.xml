@@ -1,69 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
     tools:context="org.mkab.chatapp.activity.ActivityLogin">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:paddingTop="30dp">
 
-        <LinearLayout
-            android:paddingTop="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+        <EditText
+            android:id="@+id/et_Email"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <EditText
-                android:id="@+id/et_Email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Email..."
-                android:inputType="textEmailAddress"
-                android:maxLines="1" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:hint="Email..."
+            android:inputType="textEmailAddress"
+            android:maxLines="1" />
 
-            <EditText
-                android:id="@+id/et_Password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Password..."
-                android:inputType="textPassword"
-                android:maxLines="1" />
+        <EditText
+            android:id="@+id/et_Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Password..."
+            android:inputType="textPassword"
+            android:maxLines="1" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_primary"
-                android:drawableLeft="@drawable/emoji_1f464"
-                android:onClick="btnLoginClick"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:layout_marginTop="40dp"
-                android:text="Login"
-                android:layout_marginBottom="15dp"
-                android:textColor="#ffffff" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/btn_primary"
+            android:drawableLeft="@drawable/emoji_1f464"
+            android:onClick="btnLoginClick"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Login"
+            android:textColor="#ffffff" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_success"
-                android:drawableLeft="@drawable/emoji_1f465"
-                android:onClick="btnSignUpClick"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:text="Sign Up"
-                android:layout_marginBottom="20dp"
-                android:textColor="#ffffff" />
-        </LinearLayout>
+    </LinearLayout>
 
-    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true">
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_success"
+            android:drawableLeft="@drawable/emoji_1f465"
+            android:onClick="btnSignUpClick"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="Sign Up"
+            android:textColor="#ffffff" />
 
-</LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_primary"
+            android:drawableLeft="@drawable/emoji_1f465"
+            android:onClick="btnSignUpAsDoctorClick"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:visibility="gone"
+            android:text="Sign Up as Doctor"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+</RelativeLayout>

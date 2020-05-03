@@ -8,6 +8,7 @@ public class User {
     public String Email;
     public String FirstName;
     public String LastName;
-    public String EntryDate;
+    public String Majlish;
+    public String OnDuty;
 
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_splash"
+    tools:context=".activity.SplashActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/mkab_transparent" />
+
+    <TextView
+        android:id="@+id/txt_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="@string/txt_heading"
+        android:textSize="16dp"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+        android:textColor="@android:color/primary_text_light"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txt_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="15dp"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="@string/current_version"
+        android:textAllCaps="false"
+        android:textColor="@android:color/primary_text_light"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

@@ -73,10 +73,7 @@ public class ActivityFriendProfile extends AppCompatActivity {
             btn_AddFriend.setEnabled(false);
             btn_AddFriend.setText("Connected");
 
-
         }
-
-
     }
 
 
@@ -97,7 +94,9 @@ public class ActivityFriendProfile extends AppCompatActivity {
                 return call.execute().body();
             } catch (IOException e) {
                 e.printStackTrace();
-                pd.hide();
+                if(pd!=null && pd.isShowing()){
+                    pd.dismiss();
+                }
             }
 
             return null;
@@ -111,11 +110,16 @@ public class ActivityFriendProfile extends AppCompatActivity {
                 f.Email = item.getString("Email");
                 f.FirstName = item.getString("FirstName");
                 f.LastName = item.getString("LastName");
+                f.Majlish = item.getString("Majlish");
                 tv_FriendFullName.setText(Tools.toProperName(f.FirstName) + " " + Tools.toProperName(f.LastName));
-                pd.hide();
+                if(pd!=null && pd.isShowing()){
+                    pd.dismiss();
+                }
             } catch (JSONException e1) {
                 e1.printStackTrace();
-                pd.hide();
+                if(pd!=null && pd.isShowing()){
+                    pd.dismiss();
+                }
             }
         }
     }
@@ -126,6 +130,7 @@ public class ActivityFriendProfile extends AppCompatActivity {
         Map<String, String> map = new HashMap<>();
         map.put("FirstName", user.FirstName);
         map.put("LastName", user.LastName);
+        map.put("Majlish", user.Majlish);
         firebase.child(Tools.encodeString(f.Email)).child(Tools.encodeString(user.Email)).setValue(map);
         btn_AddFriend.setEnabled(false);
         btn_AddFriend.setText("Request Sent");

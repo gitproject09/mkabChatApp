@@ -29,10 +29,12 @@ public class DataContext extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //String tblLocalUser = "create table if not exists LocalUser (ID integer ,Email text, FirstName text, LastName text); ";
-        String tblFriends = "create table if not exists Friends (Email text, FirstName text, LastName text);";
+        String tblFriends = "create table if not exists Friends (Email text, FirstName text, LastName text, Majlish text);";
+        String tblDoctors = "create table if not exists Doctors (Email text, FirstName text, LastName text, Majlish text, OnDuty text);";
         String tblMessages = "create table if not exists Messages (FromMail text, ToMail text, Message text, SentDate text);";
         //db.execSQL(tblLocalUser);
         db.execSQL(tblFriends);
+        db.execSQL(tblDoctors);
         db.execSQL(tblMessages);
     }
 
@@ -40,9 +42,11 @@ public class DataContext extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //String dropLocalUser = "drop table if exists LocalUser;";
         String dropFriends = "drop table if exists Friends; ";
+        String dropDoctors = "drop table if exists Doctors; ";
         String dropMessages = "drop table if exists Messages;";
         // db.execSQL(dropLocalUser);
         db.execSQL(dropFriends);
+        db.execSQL(dropDoctors);
         db.execSQL(dropMessages);
         onCreate(db);
     }
@@ -78,6 +82,74 @@ public class DataContext extends SQLiteOpenHelper {
 
     }
 
+    public List<User> getUserDoctorList() {
+        List<User> friendList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "select * from Doctors";
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            try {
+                User friend = new User();
+                friend.Email = c.getString(c.getColumnIndex("Email"));
+                friend.FirstName = c.getString(c.getColumnIndex("FirstName"));
+                friend.LastName = c.getString(c.getColumnIndex("LastName"));
+                friend.Majlish = c.getString(c.getColumnIndex("Majlish"));
+                friend.Majlish = c.getString(c.getColumnIndex("Majlish"));
+                friend.OnDuty = c.getString(c.getColumnIndex("OnDuty"));
+                friendList.add(friend);
+                c.moveToNext();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        c.close();
+
+        Collections.sort(friendList, new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o1.FirstName.compareTo(o2.FirstName);
+            }
+        });
+
+        return friendList;
+
+    }
+
+    public List<User> getUserDoctorList(String doctorType) {
+        List<User> friendList = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "select * from Doctors where Majlish = '" + doctorType + "'";
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()) {
+            try {
+                User friend = new User();
+                friend.Email = c.getString(c.getColumnIndex("Email"));
+                friend.FirstName = c.getString(c.getColumnIndex("FirstName"));
+                friend.LastName = c.getString(c.getColumnIndex("LastName"));
+                friend.Majlish = c.getString(c.getColumnIndex("Majlish"));
+                friend.Majlish = c.getString(c.getColumnIndex("Majlish"));
+                friend.OnDuty = c.getString(c.getColumnIndex("OnDuty"));
+                friendList.add(friend);
+                c.moveToNext();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        c.close();
+
+        Collections.sort(friendList, new Comparator<User>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o1.FirstName.compareTo(o2.FirstName);
+            }
+        });
+
+        return friendList;
+
+    }
+
     public void refreshUserFriendList(List<User> friendList) {
 
         for (User item : friendList) {
@@ -85,7 +157,21 @@ public class DataContext extends SQLiteOpenHelper {
             if (checkFriendAlreadyExists(item.Email) == 0) {
                 // insert
                 SQLiteDatabase db = getWritableDatabase();
-                String query = "insert into Friends (Email,FirstName,LastName) values('" + item.Email + "', '" + item.FirstName + "', '" + item.LastName + "');";
+                String query = "insert into Friends (Email,FirstName,LastName,Majlish) values('" + item.Email + "', '" + item.FirstName + "', '" + item.LastName + "', '" + item.Majlish + "');";
+                db.execSQL(query);
+                // db.close();
+            }
+        }
+    }
+
+    public void refreshUserDoctorList(List<User> friendList) {
+
+        for (User item : friendList) {
+            // check if user already exists
+            if (checkDoctorAlreadyExists(item.Email) == 0) {
+                // insert
+                SQLiteDatabase db = getWritableDatabase();
+                String query = "insert into Doctors (Email,FirstName,LastName,Majlish,OnDuty) values('" + item.Email + "', '" + item.FirstName + "', '" + item.LastName + "', '" + item.Majlish + "', '" + item.OnDuty + "');";
                 db.execSQL(query);
                 // db.close();
             }
@@ -113,8 +199,37 @@ public class DataContext extends SQLiteOpenHelper {
         }
     }
 
+    public int checkDoctorAlreadyExists(String email) {
+        Cursor c = null;
+        SQLiteDatabase db = null;
+        try {
+            db = getReadableDatabase();
+            String query = "select count(*) from Doctors where Email = '" + email + "'";
+            c = db.rawQuery(query, null);
+            if (c.moveToFirst()) {
+                return c.getInt(0);
+            }
+            return 0;
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+    }
+
     public void deleteAllFriendsFromLocalDB() {
         String query = "delete from Friends";
+        // String queryMess = "delete from Messages";
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(query);
+        //db.execSQL(queryMess);
+    }
+
+    public void deleteAllDoctorsFromLocalDB() {
+        String query = "delete from Doctors";
         // String queryMess = "delete from Messages";
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL(query);
@@ -126,8 +241,28 @@ public class DataContext extends SQLiteOpenHelper {
         getWritableDatabase().execSQL(query);
     }
 
+    public void deleteDoctorByEmailFromLocalDB(String email) {
+        String query = "delete from Doctors where Email = '" + email + "';";
+        getWritableDatabase().execSQL(query);
+    }
+
     public User getFriendByEmailFromLocalDB(String friendEmail) {
         String query = "select * from Friends where Email = '" + friendEmail + "';";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        User friend = new User();
+
+        if (c.getCount() > 0) {
+            friend.Email = c.getString(c.getColumnIndex("Email"));
+            friend.FirstName = c.getString(c.getColumnIndex("FirstName"));
+            friend.LastName = c.getString(c.getColumnIndex("LastName"));
+        }
+        return friend;
+    }
+
+    public User getDoctorByEmailFromLocalDB(String friendEmail) {
+        String query = "select * from Doctors where Email = '" + friendEmail + "';";
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
@@ -196,7 +331,7 @@ public class DataContext extends SQLiteOpenHelper {
                 mess.Message = c.getString(c.getColumnIndex("Message"));
                 mess.Message = mess.Message.replace("\n", "");
                 mess.SentDate = c.getString(c.getColumnIndex("SentDate"));
-                mess.FriendFullName = friend.FirstName + " " + friend.LastName;
+                mess.FriendFullName = friend.FirstName;// + " " + friend.LastName;
                 mess.rowid =  c.getInt(c.getColumnIndex("rowid"));
                 userLastChat.add(mess);
             } catch (Exception e) {
@@ -217,6 +352,11 @@ public class DataContext extends SQLiteOpenHelper {
 
     public void setPreferedDisplayName(String friendEmail, String newName) {
         String query = "update Friends set FirstName = '" + newName + "', LastName='' where Email='" + friendEmail + "' ";
+        getWritableDatabase().execSQL(query);
+    }
+
+    public void setPreferedDisplayDoctorName(String friendEmail, String newName) {
+        String query = "update Doctors set FirstName = '" + newName + "', LastName='' where Email='" + friendEmail + "' ";
         getWritableDatabase().execSQL(query);
     }
 
