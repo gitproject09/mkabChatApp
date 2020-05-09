@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import org.mkab.chatapp.R;
 
-public class DoctorDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public class DoctorDetailsActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "PostDetailActivity";
     public static final String EXTRA_FROM = "coming_from";
@@ -39,6 +39,9 @@ public class DoctorDetailsActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_details);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         mTitleView = findViewById(R.id.post_title);
         mBodyView = findViewById(R.id.post_body);
         mEmail = findViewById(R.id.post_email);
@@ -55,18 +58,14 @@ public class DoctorDetailsActivity extends AppCompatActivity implements View.OnC
         imgChat.setOnClickListener(this);
 
 
-
         String title = getIntent().getStringExtra(EXTRA_TITLE);
         String body = getIntent().getStringExtra(EXTRA_BODY);
         String mobile = getIntent().getStringExtra(EXTRA_MOBILE);
         String email = getIntent().getStringExtra(EXTRA_EMAIL);
         String comingFrom = getIntent().getStringExtra(EXTRA_FROM);
 
-        if(body.equalsIgnoreCase("MBBS")){
-            getSupportActionBar().setTitle("Doctors");
-        } else {
-            getSupportActionBar().setTitle("Contacts");
-        }
+        getSupportActionBar().setTitle(comingFrom);
+
 
         if(comingFrom.equalsIgnoreCase("DOCTOR_LIST")){
             imgChat.setVisibility(View.GONE);

@@ -18,6 +18,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Tools {
 
+    public static final String BASE_URL = "https://firebasestorage.googleapis.com/v0/b/mkabchatapp.appspot.com/o/";
+
     public static String encodeString(String string) {
         return string.replace(".", ",");
     }

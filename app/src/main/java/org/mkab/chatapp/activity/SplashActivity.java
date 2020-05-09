@@ -3,7 +3,6 @@ package org.mkab.chatapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -15,24 +14,23 @@ import org.mkab.chatapp.model.User;
 import org.mkab.chatapp.service.LocalUserService;
 import org.mkab.chatapp.utils.LogUtil;
 
-
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     private static int SPLASH_TIME_OUT = 2000;
     private User user;
     Firebase refUser;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Firebase.setAndroidContext(this);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_splash);
         user = LocalUserService.getLocalUserFromPreferences(this);
-
 
         new Handler().postDelayed(new Runnable() {
 
@@ -55,10 +53,8 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 }

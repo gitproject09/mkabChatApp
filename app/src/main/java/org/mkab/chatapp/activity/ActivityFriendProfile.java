@@ -34,7 +34,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 
-public class ActivityFriendProfile extends AppCompatActivity {
+public class ActivityFriendProfile extends BaseActivity {
 
     String friendEmail;
     TextView tv_FriendFullName;
@@ -47,6 +47,10 @@ public class ActivityFriendProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_profile);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Friends Profile");
         Firebase.setAndroidContext(this);
         btn_AddFriend = (Button) findViewById(R.id.btn_AddFriend);
         pd = new ProgressDialog(this);
@@ -169,6 +173,23 @@ public class ActivityFriendProfile extends AppCompatActivity {
 
         builder.show();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

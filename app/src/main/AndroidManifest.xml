@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -37,16 +37,18 @@
 
         <activity
             android:name=".activity.MainUIActivity"
-            android:label="@string/title_activity_main">
-        </activity>
+            android:label="@string/title_activity_main" />
 
         <activity
             android:name=".activity.ActivityLogin"
             android:launchMode="singleTop"
             android:noHistory="true" />
+
         <activity android:name=".activity.ActivityRegister" />
         <activity android:name=".activity.ActivityAddDoctors" />
+
         <activity android:name=".activity.DoctorDetailsActivity" />
+
         <activity android:name=".activity.MessageSendActivity" />
         <activity android:name=".activity.MailSendActivity" />
         <activity android:name=".activity.ActivityProfile" />
@@ -58,29 +60,31 @@
         <activity android:name=".activity.ActivityFriendProfile" />
         <activity android:name=".activity.ActivityNotifications" />
 
-       <!-- <service
-            android:name=".receiver.AppService"
-            android:enabled="true"
-            android:exported="true"
-            android:stopWithTask="false" />-->
+        <activity
+            android:name=".activity.FileViewActivity" />
 
-       <!-- <service
-            android:name=".service.JobDispatchService"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
-            </intent-filter>
-        </service>-->
+        <!-- <service
+             android:name=".receiver.AppService"
+             android:enabled="true"
+             android:exported="true"
+             android:stopWithTask="false" />-->
 
-        <service
-            android:name=".service.MyService">
+        <!-- <service
+             android:name=".service.JobDispatchService"
+             android:enabled="true"
+             android:exported="true">
+             <intent-filter>
+                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+             </intent-filter>
+         </service>-->
+
+        <service android:name=".service.MyService">
             <intent-filter android:priority="90000">
                 <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.SCREEN_ON"/>
-                <action android:name="android.intent.action.USER_PRESENT"/>
-                <action android:name="android.intent.action.USER_UNLOCKED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.USER_UNLOCKED" />
             </intent-filter>
         </service>
 

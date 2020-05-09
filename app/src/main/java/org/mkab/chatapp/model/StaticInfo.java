@@ -8,6 +8,7 @@ public class StaticInfo {
     public static String FriendsURL = BaseEndPoint + "/friends";
     public static String UsersURL = BaseEndPoint + "/users";
     public static String DoctorsURL = BaseEndPoint + "/doctors";
+    public static String InfoURL = BaseEndPoint + "/informations";
     public static String UserCurrentChatFriendEmail = "";
     public static String TypingStatus = "TypingStatus";
 

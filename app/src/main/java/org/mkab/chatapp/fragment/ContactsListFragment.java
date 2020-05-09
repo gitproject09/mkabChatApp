@@ -94,7 +94,7 @@ public class ContactsListFragment extends Fragment {
                             TextView tv_Name = (TextView) view.findViewById(R.id.tv_FriendFullName);
 
                             Intent intent = new Intent(getActivity(), DoctorDetailsActivity.class);
-                            intent.putExtra(DoctorDetailsActivity.EXTRA_FROM, "CONTACT_LIST");
+                            intent.putExtra(DoctorDetailsActivity.EXTRA_FROM, "Contacts");
                             intent.putExtra(DoctorDetailsActivity.EXTRA_TITLE, userFriendList.get(position).FirstName);
                             intent.putExtra(DoctorDetailsActivity.EXTRA_BODY, userFriendList.get(position).Majlish);
                             intent.putExtra(DoctorDetailsActivity.EXTRA_MOBILE, userFriendList.get(position).LastName);
@@ -232,16 +232,12 @@ public class ContactsListFragment extends Fragment {
                     db.refreshUserFriendList(friendList);
 
                     userFriendList.clear();
-                    //userFriendList = db.getUserFriendList();
-                    userFriendList = friendList;
+                    userFriendList = db.getUserFriendList();
+                   // userFriendList = friendList;
 
                     // set to adapter
                     adapter = new FriendListAdapter(getActivity(), userFriendList);
                     lv_FriendList.setAdapter(adapter);
-
-                    /*ListAdapter adp = new FriendListAdapter(getActivity(), db.getUserFriendList());
-                    ListView lv_FriendList = (ListView) findViewById(R.id.lv_FriendList);
-                    lv_FriendList.setAdapter(adp);*/
 
                     if (getView() != null && pd != null && pd.isShowing()) {
                         pd.dismiss();

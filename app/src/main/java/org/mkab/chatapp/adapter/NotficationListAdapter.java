@@ -35,11 +35,9 @@ public class NotficationListAdapter extends ArrayAdapter<NotificationModel> {
     private ImageButton acceptBtn;
     private ImageButton rejectBtn;
 
-
     public NotficationListAdapter(@NonNull Context context, List<NotificationModel> list) {
         super(context, R.layout.custom_notication_row, list);
         con = context;
-
     }
 
     @NonNull
@@ -60,8 +58,6 @@ public class NotficationListAdapter extends ArrayAdapter<NotificationModel> {
         // friend request
         if (model.NotificationType == 1) {
             // make button and append
-//            acceptBtn = new Button(getContext());
-//            rejectBtn = new Button(getContext());
 
             acceptBtn = new ImageButton(getContext());
             rejectBtn = new ImageButton(getContext());
@@ -83,14 +79,13 @@ public class NotficationListAdapter extends ArrayAdapter<NotificationModel> {
 
             acceptBtn.setLayoutParams(layoutParams);
             rejectBtn.setLayoutParams(layoutParams);
-            acceptBtn.setPadding(4, 4, 4, 4);
-            rejectBtn.setPadding(4, 4, 4, 4);
+            acceptBtn.setPadding(4, 4, 8, 4);
+            rejectBtn.setPadding(8, 4, 4, 4);
             layout.addView(acceptBtn);
             layout.addView(rejectBtn);
         }
         return customView;
     }
-
 
     private void setCustomOnClick(final ImageButton btn, final String friendEmail, final String friendFirstName, final String friendLastName) {
 

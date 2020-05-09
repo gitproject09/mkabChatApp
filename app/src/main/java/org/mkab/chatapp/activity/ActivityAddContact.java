@@ -31,7 +31,7 @@ import java.util.List;
 
 import retrofit2.Call;
 
-public class ActivityAddContact extends AppCompatActivity {
+public class ActivityAddContact extends BaseActivity {
 
     ListView lv_SerachList;
     EditText searchKey;
@@ -41,6 +41,11 @@ public class ActivityAddContact extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Add Contact");
+
         pd = new ProgressDialog(this);
         pd.setMessage("Searching...");
         lv_SerachList = (ListView) findViewById(R.id.lv_AddContactList);
@@ -143,6 +148,24 @@ public class ActivityAddContact extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

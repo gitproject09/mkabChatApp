@@ -28,6 +28,7 @@ import org.mkab.chatapp.R;
 import org.mkab.chatapp.fragment.ChatListFragment;
 import org.mkab.chatapp.fragment.ContactsListFragment;
 import org.mkab.chatapp.fragment.DoctorsListFragment;
+import org.mkab.chatapp.fragment.InformationFragment;
 import org.mkab.chatapp.model.StaticInfo;
 import org.mkab.chatapp.model.User;
 import org.mkab.chatapp.service.Constants;
@@ -108,11 +109,13 @@ public class MainUIActivity extends AppCompatActivity {
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[]{
                     new DoctorsListFragment(),
+                    new InformationFragment(),
                     new ChatListFragment(),
                     new ContactsListFragment()
             };
             private final String[] mFragmentNames = new String[]{
                     getString(R.string.heading_doctors),
+                    getString(R.string.heading_info),
                     chatTab,
                     getString(R.string.heading_contacts)/*,
                     getString(R.string.heading_my_top_posts)*/
@@ -160,7 +163,7 @@ public class MainUIActivity extends AppCompatActivity {
 
                 if (tab.getPosition() == 0) {
 
-                } else if (tab.getPosition() == 1) {
+                } else if (tab.getPosition() == 2) {
                     tab.setText(getString(R.string.heading_chats));
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("LocalUser", 0);
                     SharedPreferences.Editor editor = pref.edit();

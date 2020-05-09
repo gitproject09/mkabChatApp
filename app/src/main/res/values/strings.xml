@@ -33,11 +33,23 @@
     <string name="text_name_notification">Notification Name</string>
 
     <string name="heading_doctors">Doctors</string>
+    <string name="heading_info">Info</string>
     <string name="heading_chats">Chats</string>
     <string name="heading_contacts">Contacts</string>
 
     <string name="heading_allopathic">Allopathic</string>
     <string name="heading_homeo">Homeopathic</string>
     <string name="heading_aurvedic">Aurvedic</string>
+
+    <string-array name="image_ids">
+        <item>Prescriptions</item>
+        <item>Hujurs Instructions</item>
+        <item>General Information</item>
+        <item>FAQ</item>
+        <item>PPE</item>
+        <item>Home Quarantine</item>
+        <item>Isolation</item>
+        <item>Corona Info</item>
+    </string-array>
 
 </resources>

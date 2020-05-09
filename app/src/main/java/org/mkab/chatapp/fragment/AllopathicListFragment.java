@@ -93,7 +93,7 @@ public class AllopathicListFragment extends Fragment {
                             TextView tv_Name = view.findViewById(R.id.tv_FriendFullName);
 
                             Intent intent = new Intent(getActivity(), DoctorDetailsActivity.class);
-                            intent.putExtra(DoctorDetailsActivity.EXTRA_FROM, "DOCTOR_LIST");
+                            intent.putExtra(DoctorDetailsActivity.EXTRA_FROM, "Allopathic");
                             intent.putExtra(DoctorDetailsActivity.EXTRA_TITLE, userDoctorList.get(position).FirstName);
                             intent.putExtra(DoctorDetailsActivity.EXTRA_BODY, userDoctorList.get(position).Majlish);
                             intent.putExtra(DoctorDetailsActivity.EXTRA_MOBILE, userDoctorList.get(position).LastName);
@@ -206,6 +206,7 @@ public class AllopathicListFragment extends Fragment {
                 List<User> friendList = new ArrayList<>();
 
                 if (jsonListString != null) {
+                    LogUtil.printInfoMessage(InformationFragment.class.getSimpleName(), "DoctorList Response : ", jsonListString);
                     JSONObject userDoctorTree = new JSONObject(jsonListString);
                     for (Iterator iterator = userDoctorTree.keys(); iterator.hasNext(); ) {
                         String key = (String) iterator.next();

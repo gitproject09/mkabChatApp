@@ -90,7 +90,7 @@ public class HomeopathicListFragment extends Fragment {
                             TextView tv_Name = view.findViewById(R.id.tv_FriendFullName);
 
                             Intent intent = new Intent(getActivity(), DoctorDetailsActivity.class);
-                            intent.putExtra(DoctorDetailsActivity.EXTRA_FROM, "DOCTOR_LIST");
+                            intent.putExtra(DoctorDetailsActivity.EXTRA_FROM, "Homeopathic");
                             intent.putExtra(DoctorDetailsActivity.EXTRA_TITLE, userDoctorList.get(position).FirstName);
                             intent.putExtra(DoctorDetailsActivity.EXTRA_BODY, userDoctorList.get(position).Majlish);
                             intent.putExtra(DoctorDetailsActivity.EXTRA_MOBILE, userDoctorList.get(position).LastName);

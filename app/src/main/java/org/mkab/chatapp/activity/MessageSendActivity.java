@@ -28,8 +28,7 @@ import org.mkab.chatapp.R;
 import org.mkab.chatapp.interfaces.DialogClickListener;
 import org.mkab.chatapp.utils.FinishDialogChooser;
 
-
-public class MessageSendActivity extends AppCompatActivity {
+public class MessageSendActivity extends BaseActivity {
 
     public static final String EXTRA_SMS_ADDRESS = "sms_address";
     public static final String EXTRA_SMS_RECEIVER = "sms_receiver";
@@ -53,9 +52,13 @@ public class MessageSendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_message);
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         getSupportActionBar().setTitle("Send Message to Doctor");
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 

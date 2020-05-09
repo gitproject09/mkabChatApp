@@ -17,6 +17,7 @@ import org.mkab.chatapp.R;
 import org.mkab.chatapp.model.StaticInfo;
 import org.mkab.chatapp.service.IFireBaseAPI;
 import org.mkab.chatapp.service.Tools;
+import org.mkab.chatapp.utils.LogUtil;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -25,7 +26,7 @@ import java.util.Date;
 
 import retrofit2.Call;
 
-public class ActivityAddDoctors extends AppCompatActivity {
+public class ActivityAddDoctors extends BaseActivity {
 
     EditText et_Email, et_Password, et_FirstName, et_Majlish, et_LastName;
     Button btn_Register;
@@ -36,6 +37,11 @@ public class ActivityAddDoctors extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors_entry);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        getSupportActionBar().setTitle("Sign Up as Doctor");
 
         Firebase.setAndroidContext(this);
 
@@ -51,7 +57,8 @@ public class ActivityAddDoctors extends AppCompatActivity {
     }
 
     public void btn_RegClick(View view) {
-        if (!Tools.isNetworkAvailable(this)) {
+
+       /* if (!Tools.isNetworkAvailable(this)) {
             Toast.makeText(this, "Please check your internet connection.", Toast.LENGTH_SHORT).show();
         } else if (et_FirstName.getText().toString().equals("")) {
             et_FirstName.setError("Enter Fullname");
@@ -67,7 +74,29 @@ public class ActivityAddDoctors extends AppCompatActivity {
             email = Tools.encodeString(et_Email.getText().toString());
             RegisterUserTask t = new RegisterUserTask();
             t.execute();
+
+        }*/
+
+        if (!Tools.isNetworkAvailable(this)) {
+            Toast.makeText(this, "Please check your internet connection.", Toast.LENGTH_SHORT).show();
+        } else {
+            addInfo();
         }
+    }
+
+    private void addInfo(){
+        Firebase firebase = new Firebase(StaticInfo.InfoURL);
+
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+        LogUtil.printInfoMessage(ActivityAddDoctors.class.getSimpleName(), "Current Time", ts);
+
+        String key = ts + "__" + et_Email.getText().toString();
+
+        firebase.child(key).child("title").setValue(et_FirstName.getText().toString());
+        firebase.child(key).child("type").setValue(et_LastName.getText().toString());
+        firebase.child(key).child("fileName").setValue(et_Majlish.getText().toString());
+
     }
 
     public class RegisterUserTask extends AsyncTask<Void, Void, String> {
@@ -145,6 +174,23 @@ public class ActivityAddDoctors extends AppCompatActivity {
                 }
                 e.printStackTrace();
             }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

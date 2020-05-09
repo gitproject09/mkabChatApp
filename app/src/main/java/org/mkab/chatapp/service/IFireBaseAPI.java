@@ -12,6 +12,9 @@ public interface IFireBaseAPI {
     @GET("/doctors.json")
     Call<String> getAllDoctorsAsJsonString();
 
+    @GET("/informations.json")
+    Call<String> getAllInformationAsJsonString();
+
     @GET
     Call<String> getUserFriendsListAsJsonString(@Url String url);
 

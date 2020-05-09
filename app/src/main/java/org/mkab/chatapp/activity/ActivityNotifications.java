@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ActivityNotifications extends AppCompatActivity {
+public class ActivityNotifications extends BaseActivity {
 
     ListView lv_NotificationList;
     User user;
@@ -34,6 +34,11 @@ public class ActivityNotifications extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Notifications");
+
         Firebase.setAndroidContext(this);
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("LocalUser", 0);
@@ -105,7 +110,23 @@ public class ActivityNotifications extends AppCompatActivity {
                 }
         );
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

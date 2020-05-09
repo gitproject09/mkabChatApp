@@ -26,7 +26,7 @@ import java.util.Date;
 
 import retrofit2.Call;
 
-public class ActivityRegister extends AppCompatActivity {
+public class ActivityRegister extends BaseActivity {
 
 
     EditText et_Email, et_Password, et_FirstName, et_Majlish, et_LastName;
@@ -38,6 +38,10 @@ public class ActivityRegister extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Sign Up");
 
         Firebase.setAndroidContext(this);
 
@@ -109,6 +113,7 @@ public class ActivityRegister extends AppCompatActivity {
                     Date date = new Date();
                     firebase.child(email).child("Status").setValue(dateFormat.format(date));
                     Toast.makeText(getApplicationContext(), "Signup Success", Toast.LENGTH_SHORT).show();
+
                     if(pd!=null && pd.isShowing()){
                         pd.dismiss();
                     }
@@ -143,5 +148,22 @@ public class ActivityRegister extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

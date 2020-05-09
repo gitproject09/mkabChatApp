@@ -50,7 +50,8 @@ import hani.momanii.supernova_emoji_library.Actions.EmojIconActions;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconEditText;
 import hani.momanii.supernova_emoji_library.Helper.EmojiconTextView;
 
-public class ActivityChat extends AppCompatActivity {
+public class ActivityChat extends BaseActivity {
+
     DataContext db = new DataContext(this, null, null, 1);
     EditText messageArea;
     ScrollView scrollView;
@@ -70,13 +71,19 @@ public class ActivityChat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarChatActivity);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         messageArea = (EditText) findViewById(R.id.et_Message);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         layout = (LinearLayout) findViewById(R.id.layout1);
         user = LocalUserService.getLocalUserFromPreferences(this);
         Firebase.setAndroidContext(this);
+
         reference1Listener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -274,9 +281,9 @@ public class ActivityChat extends AppCompatActivity {
                 pageNo++;
             }
         });
-        
-        
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -294,8 +301,8 @@ public class ActivityChat extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         friendEmail = extras.getString("FriendEmail");
 
-       // getSupportActionBar().setTitle(extras.getString("FriendFullName"));
-       // getSupportActionBar().setIcon(R.drawable.dp_placeholder_sm);
+        // getSupportActionBar().setTitle(extras.getString("FriendFullName"));
+        // getSupportActionBar().setIcon(R.drawable.dp_placeholder_sm);
 
         scrollView.post(new Runnable() {
             @Override
@@ -453,6 +460,10 @@ public class ActivityChat extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
         if (id == R.id.menu_deleteConservation) {
             new AlertDialog.Builder(this)
                     .setTitle(friendFullName)
@@ -507,5 +518,9 @@ public class ActivityChat extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
 }

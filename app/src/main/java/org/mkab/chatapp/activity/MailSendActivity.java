@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import org.mkab.chatapp.R;
 
-public class MailSendActivity extends AppCompatActivity {
+public class MailSendActivity extends BaseActivity {
 
     public static final String EXTRA_MAIL_ADDRESS = "mail_address";
     String mailAddress;
@@ -24,9 +24,14 @@ public class MailSendActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_mail);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         getSupportActionBar().setTitle("Send Mail to Doctor");
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         mailAddress = getIntent().getStringExtra(EXTRA_MAIL_ADDRESS);
         if (mailAddress == null) {
             throw new IllegalArgumentException("Must pass EXTRA_POST_KEY");

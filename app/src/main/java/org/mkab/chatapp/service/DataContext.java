@@ -63,6 +63,7 @@ public class DataContext extends SQLiteOpenHelper {
                 friend.Email = c.getString(c.getColumnIndex("Email"));
                 friend.FirstName = c.getString(c.getColumnIndex("FirstName"));
                 friend.LastName = c.getString(c.getColumnIndex("LastName"));
+                friend.Majlish = c.getString(c.getColumnIndex("Majlish"));
                 friendList.add(friend);
                 c.moveToNext();
             } catch (Exception e) {
