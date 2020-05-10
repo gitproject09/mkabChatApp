@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.mkab.chatapp.R;
@@ -109,13 +108,8 @@ public class InformationFragment extends Fragment {
         gridView.setAdapter(gridAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-               /* Intent doctorsList = new Intent(getActivity().getApplicationContext(), DoctorsList.class);
-                startActivity(doctorsList);*/
 
                 Intent intent = new Intent(getActivity(), FileViewActivity.class);
-               /* intent.putExtra("Title", parkingList.get(position).title);
-                intent.putExtra("Type", parkingList.get(position).type);
-                intent.putExtra("FileLink", parkingList.get(position).fileName);*/
                 intent.putExtra("Title", informationList.get(position).getTitle());
                 intent.putExtra("Type", informationList.get(position).getType());
                 intent.putExtra("FileLink", informationList.get(position).getFileName());

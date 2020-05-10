@@ -78,7 +78,7 @@
             android:onClick="btnSignUpAsDoctorClick"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:text="Sign Up as Doctor"
             android:textColor="#ffffff" />
 

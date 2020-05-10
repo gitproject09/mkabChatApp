@@ -1,5 +1,6 @@
 package org.mkab.chatapp.activity;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -10,13 +11,16 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -49,6 +53,8 @@ public class FileViewActivity extends BaseActivity {
     private static final int REQUEST_EXTERNAL_STORAGE = 3;
     ProgressDialog pDialog;
     private String ROOT_URL = "https://raw.githubusercontent.com/gitproject09/Resources/";
+    private String sTitle = "";
+    private String fileLink = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +69,9 @@ public class FileViewActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        getSupportActionBar().setTitle(getIntent().getStringExtra("Title"));
+        sTitle = getIntent().getStringExtra("Title");
+
+        getSupportActionBar().setTitle(sTitle);
 
         webView = findViewById(R.id.webView);
         imageView = findViewById(R.id.imageView);
@@ -136,12 +144,15 @@ public class FileViewActivity extends BaseActivity {
                     .placeholder(R.drawable.progress_animation)
                     .error(R.drawable.mkab_transparent)
                     .into(imageView);
+            fileLink = fileUrl + "?raw=true";
         } else if (type.equalsIgnoreCase("pdf") || type.equalsIgnoreCase("html")) {
 
             String pdfUrl = ROOT_URL + getIntent().getStringExtra("FileLink");
+            fileLink = pdfUrl;
 
             loadPdfFile(webView, title, type, pdfUrl);
         } else {
+            fileLink = getIntent().getStringExtra("FileLink");
             loadPdfFile(webView, title, type, getIntent().getStringExtra("FileLink"));
         }
 
@@ -213,36 +224,64 @@ public class FileViewActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_share, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        } else if (id == R.id.menuShare) {
+
+            Intent sIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sIntent.setType("text/plain");
+            sIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, sTitle);
+            sIntent.putExtra(android.content.Intent.EXTRA_TEXT, fileLink);
+            //sharingIntent.putExtra(android.content.Intent.ACTION_CALL, "+88" + sMobileNum);
+            startActivity(Intent.createChooser(sIntent, "Share this file using..."));
+        } else if (id == R.id.menuDownload) {
+
+            Toast.makeText(FileViewActivity.this, "Feature Coming Soon", Toast.LENGTH_LONG).show();
+
+            /*if (checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                downloadImageFile(fileLink);
+            } else {
+                ActivityCompat.requestPermissions(FileViewActivity.this, new String[]{
+                        (Manifest.permission.WRITE_EXTERNAL_STORAGE)}, REQUEST_EXTERNAL_STORAGE);
+            }*/
+
+        } else {
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private boolean checkPermission(String permission) {
+        int checkPermission = ContextCompat.checkSelfPermission(this, permission);
+        return checkPermission == PackageManager.PERMISSION_GRANTED;
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
-    /**
-     * When Back icon pressed or Menu clicked
-     *
-     * @param item
-     * @return boolean true or false
-     */
-    @Override
-    public boolean onOptionsItemSelected(android.view.MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(final int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case REQUEST_EXTERNAL_STORAGE:
+
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (requestCode == REQUEST_EXTERNAL_STORAGE) {
-                        Toast.makeText(FileViewActivity.this, "Permission granted please click again", Toast.LENGTH_LONG).show();
-                    }
+                    Toast.makeText(FileViewActivity.this, "Permission granted", Toast.LENGTH_LONG).show();
+                    downloadImageFile(fileLink);
                 } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(this);
                     alert.setMessage("You need to allow storage permission");
