@@ -1,8 +1,7 @@
 package org.mkab.chatapp.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,14 @@ import org.mkab.chatapp.service.Tools;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class AdapterLastChat extends ArrayAdapter<Message> {
 
     public AdapterLastChat(@NonNull Context context, List<Message> messageList) {
         super(context, R.layout.custom_lastchat_row, messageList);
     }
-
 
     @NonNull
     @Override

@@ -32,5 +32,7 @@
             android:layout_height="wrap_content"
             android:text="STOP"
             android:textSize="13sp" />
+
     </LinearLayout>
+
 </LinearLayout>

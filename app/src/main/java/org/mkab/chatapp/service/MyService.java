@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -29,6 +28,8 @@ import org.mkab.chatapp.model.User;
 import org.mkab.chatapp.utils.LogUtil;
 
 import java.util.Map;
+
+import androidx.core.app.NotificationCompat;
 
 public class MyService extends Service {
 

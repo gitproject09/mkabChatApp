@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -32,6 +30,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.appcompat.app.AlertDialog;
 import retrofit2.Call;
 
 public class ActivityFriendProfile extends BaseActivity {

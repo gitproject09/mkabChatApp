@@ -24,7 +24,7 @@
         android:layout_toEndOf="@+id/profile_image_center"
         android:background="@android:color/transparent">
 
-        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/tools"
+        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -87,7 +87,7 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </FrameLayout>
 

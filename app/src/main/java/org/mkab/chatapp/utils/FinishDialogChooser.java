@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDialog;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -13,6 +12,8 @@ import android.widget.TextView;
 
 import org.mkab.chatapp.R;
 import org.mkab.chatapp.interfaces.DialogClickListener;
+
+import androidx.appcompat.app.AppCompatDialog;
 
 
 public class FinishDialogChooser extends AppCompatDialog implements View.OnClickListener {
